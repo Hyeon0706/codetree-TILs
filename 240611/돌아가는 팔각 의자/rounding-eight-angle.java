@@ -77,7 +77,8 @@ public class Main {
 			second[0] = temp;
 			if(!two.equals(third[6]) && pre!=3) {
 				turn3(-1, 2);
-			}else if(!six.equals(first[2]) && pre!=1) {
+			}
+			if(!six.equals(first[2]) && pre!=1) {
 				turn1(-1, 2);
 			}
 		}else {
@@ -88,7 +89,8 @@ public class Main {
 			second[7] = temp;
 			if(!two.equals(third[6]) && pre!=3) {
 				turn3(1, 2);
-			}else if(!six.equals(first[2]) && pre!=1) {
+			}
+			if(!six.equals(first[2]) && pre!=1) {
 				turn1(1, 2);
 			}
 		}
@@ -106,7 +108,8 @@ public class Main {
 			third[0] = temp;
 			if(!two.equals(fourth[6]) && pre!=4) {
 				turn4(-1, 3);
-			}else if(!six.equals(second[2]) && pre!=2) {
+			}
+			if(!six.equals(second[2]) && pre!=2) {
 				turn2(-1, 3);
 			}
 		}else {
@@ -117,7 +120,8 @@ public class Main {
 			third[7] = temp;
 			if(!two.equals(fourth[6]) && pre!=4) {
 				turn4(1, 3);
-			}else if(!six.equals(second[2]) && pre!=2) {
+			}
+			if(!six.equals(second[2]) && pre!=2) {
 				turn2(1, 3);
 			}
 		}
