@@ -77,7 +77,7 @@ public class Main {
 			second[0] = temp;
 			if(!two.equals(third[6]) && pre!=3) {
 				turn3(-1, 2);
-			}else if(!six.equals(first[2]) && pre!=2) {
+			}else if(!six.equals(first[2]) && pre!=1) {
 				turn1(-1, 2);
 			}
 		}else {
