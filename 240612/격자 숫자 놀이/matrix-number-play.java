@@ -24,6 +24,8 @@ public class Main {
 			}
 		}
 		for(int time=0; time<=100; time++) {
+//			System.out.println(rowSize);
+//			System.out.println(colSize);
 			if(grid[r][c]==k) {
 				System.out.println(time);
 				return;
@@ -37,13 +39,14 @@ public class Main {
 					func2(i);
 				}
 			}
+//			print();
 		}
 		System.out.println(-1);
 	}
 	
 	static void func1(int rowNum) { //행 정렬
 		HashMap<Integer, Integer> map = new HashMap<>();
-		for(int i=0; i<rowSize; i++) {
+		for(int i=0; i<colSize; i++) {
 			int num = grid[rowNum][i]; 
 			if(num==0) {
 				continue;
@@ -70,7 +73,7 @@ public class Main {
 	
 	static void func2(int colNum) { //열 정렬
 		HashMap<Integer, Integer> map = new HashMap<>();
-		for(int i=0; i<colSize; i++) {
+		for(int i=0; i<rowSize; i++) {
 			int num = grid[i][colNum]; 
 			if(num==0) {
 				continue;
@@ -93,6 +96,16 @@ public class Main {
 			grid[i++][colNum] = 0;
 			grid[i++][colNum] = 0;
 		}
+	}
+	
+	static void print() {
+		for(int i=0; i<12; i++) {
+			for(int j=0; j<12; j++) {
+				System.out.print(grid[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
 
 }
