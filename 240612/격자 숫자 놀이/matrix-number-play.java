@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -10,6 +10,25 @@ public class Main {
 	static int[][] grid = new int[101][101];
 	static int rowSize = 3;
 	static int colSize = 3;
+	static class Number implements Comparable<Number> {
+        int number;
+        int count;
+
+        public Number(int n, int c) {
+            this.number = n;
+            this.count = c;
+        }
+
+        public int compareTo(Number o) {
+            if (this.count > o.count) {
+                return 1;
+            } else if (this.count == o.count) {
+                return this.number - o.number;
+            } else {
+                return -1;
+            }
+        }
+    }
 
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -45,6 +64,7 @@ public class Main {
 	}
 	
 	static void func1(int rowNum) { //행 정렬
+		PriorityQueue<Number> pq = new PriorityQueue<>();
 		HashMap<Integer, Integer> map = new HashMap<>();
 		for(int i=1; i<=colSize; i++) {
 			int num = grid[rowNum][i]; 
@@ -57,12 +77,12 @@ public class Main {
 				map.put(num, 1);
 			}
 		}
-		ArrayList<HashMap.Entry<Integer, Integer>> entryList = new ArrayList<>(map.entrySet());
-		entryList.sort(HashMap.Entry.comparingByValue());
+		map.forEach((k, v) -> pq.offer(new Number(k, v)));
 		int i = 1;
-		for(HashMap.Entry<Integer, Integer> entry : entryList){
-			grid[rowNum][i++] = entry.getKey();
-			grid[rowNum][i++] = entry.getValue();
+		while(pq.size()!=0) {
+			Number cur = pq.poll();
+			grid[rowNum][i++] = cur.number;
+			grid[rowNum][i++] = cur.count;
 		}
 		colSize = Math.max(colSize, i);
 		while(i<=99) {
@@ -72,6 +92,7 @@ public class Main {
 	}
 	
 	static void func2(int colNum) { //열 정렬
+		PriorityQueue<Number> pq = new PriorityQueue<>();
 		HashMap<Integer, Integer> map = new HashMap<>();
 		for(int i=1; i<=rowSize; i++) {
 			int num = grid[i][colNum]; 
@@ -84,12 +105,12 @@ public class Main {
 				map.put(num, 1);
 			}
 		}
-		ArrayList<HashMap.Entry<Integer, Integer>> entryList = new ArrayList<>(map.entrySet());
-		entryList.sort(HashMap.Entry.comparingByValue());
+		map.forEach((k, v) -> pq.offer(new Number(k, v)));
 		int i = 1;
-		for(HashMap.Entry<Integer, Integer> entry : entryList){
-			grid[i++][colNum] = entry.getKey();
-			grid[i++][colNum] = entry.getValue();
+		while(pq.size()!=0) {
+			Number cur = pq.poll();
+			grid[i++][colNum] = cur.number;
+			grid[i++][colNum] = cur.count;
 		}
 		rowSize = Math.max(rowSize, i);
 		while(i<=99) {
