@@ -7,19 +7,19 @@ import java.util.StringTokenizer;
 public class Main {
 	
 	static int r, c, k;
-	static int[][] grid = new int[100][100];
+	static int[][] grid = new int[101][101];
 	static int rowSize = 3;
 	static int colSize = 3;
 
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		r = Integer.parseInt(st.nextToken())-1;
-		c = Integer.parseInt(st.nextToken())-1;
+		r = Integer.parseInt(st.nextToken());
+		c = Integer.parseInt(st.nextToken());
 		k = Integer.parseInt(st.nextToken());
-		for(int i=0; i<3; i++) {
+		for(int i=1; i<=3; i++) {
 			st = new StringTokenizer(br.readLine());
-			for(int j=0; j<3; j++) {
+			for(int j=1; j<=3; j++) {
 				grid[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
@@ -31,11 +31,11 @@ public class Main {
 				return;
 			}
 			if(rowSize>=colSize) {
-				for(int i=0; i<rowSize; i++) {
+				for(int i=1; i<=rowSize; i++) {
 					func1(i);
 				}
 			}else {
-				for(int i=0; i<colSize; i++) {
+				for(int i=1; i<=colSize; i++) {
 					func2(i);
 				}
 			}
@@ -46,7 +46,7 @@ public class Main {
 	
 	static void func1(int rowNum) { //행 정렬
 		HashMap<Integer, Integer> map = new HashMap<>();
-		for(int i=0; i<colSize; i++) {
+		for(int i=1; i<=colSize; i++) {
 			int num = grid[rowNum][i]; 
 			if(num==0) {
 				continue;
@@ -59,13 +59,13 @@ public class Main {
 		}
 		ArrayList<HashMap.Entry<Integer, Integer>> entryList = new ArrayList<>(map.entrySet());
 		entryList.sort(HashMap.Entry.comparingByValue());
-		int i = 0;
+		int i = 1;
 		for(HashMap.Entry<Integer, Integer> entry : entryList){
 			grid[rowNum][i++] = entry.getKey();
 			grid[rowNum][i++] = entry.getValue();
 		}
 		colSize = Math.max(colSize, i);
-		while(i<99) {
+		while(i<=99) {
 			grid[rowNum][i++] = 0;
 			grid[rowNum][i++] = 0;
 		}
@@ -73,7 +73,7 @@ public class Main {
 	
 	static void func2(int colNum) { //열 정렬
 		HashMap<Integer, Integer> map = new HashMap<>();
-		for(int i=0; i<rowSize; i++) {
+		for(int i=1; i<=rowSize; i++) {
 			int num = grid[i][colNum]; 
 			if(num==0) {
 				continue;
@@ -86,13 +86,13 @@ public class Main {
 		}
 		ArrayList<HashMap.Entry<Integer, Integer>> entryList = new ArrayList<>(map.entrySet());
 		entryList.sort(HashMap.Entry.comparingByValue());
-		int i = 0;
+		int i = 1;
 		for(HashMap.Entry<Integer, Integer> entry : entryList){
 			grid[i++][colNum] = entry.getKey();
 			grid[i++][colNum] = entry.getValue();
 		}
 		rowSize = Math.max(rowSize, i);
-		while(i<99) {
+		while(i<=99) {
 			grid[i++][colNum] = 0;
 			grid[i++][colNum] = 0;
 		}
@@ -101,7 +101,7 @@ public class Main {
 	static void print() {
 		for(int i=0; i<12; i++) {
 			for(int j=0; j<12; j++) {
-				System.out.print(grid[i][j] + " ");
+				System.out.print(String.format("%02d ", grid[i][j]));
 			}
 			System.out.println();
 		}
