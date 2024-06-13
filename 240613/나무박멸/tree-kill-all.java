@@ -191,17 +191,13 @@ public class Main {
 				if(nr>=0 && nc>=0 && nr<N && nc<N){
 					if(grid[nr][nc]==-1) {
 						break;
-					}else if(grid[nr][nc]<-1) {
+					}else if(grid[nr][nc]<-1 || grid[nr][nc]==0) {
 						grid[nr][nc] = C*-1-3;
 						break;
 					}else if(grid[nr][nc]>0) {
 						grid[nr][nc] = C*-1-3;
 					}
 				}
-//				if(nr<0 || nc<0 || nr>=N || nc>=N || grid[nr][nc]<0) {
-//					break;
-//				}
-//				grid[nr][nc] = C*-1-3;
 			}
 		}
 	}
