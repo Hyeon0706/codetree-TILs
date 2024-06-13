@@ -59,9 +59,19 @@ public class Main {
 				}
 			}
 			cleanMedicine();
+//			System.out.println("초기상태");
+//			print();
 			grow();
+//			System.out.println("성장");
+//			print();
 			breeding();
-			chooseKillPoint();
+//			System.out.println("번식");
+//			print();
+			if(!chooseKillPoint()) {
+				break;
+			}
+//			System.out.println("제초");
+//			print();
 		}
 		System.out.println(killCnt);
 	}
@@ -132,7 +142,7 @@ public class Main {
 		}
 	}
 	
-	static void chooseKillPoint() {
+	static boolean chooseKillPoint() {
 		int maxR = -1;
 		int maxC = -1;
 		int maxCnt = -1;
@@ -149,8 +159,12 @@ public class Main {
 			}
 		}
 //		System.out.println(maxR + " : " + maxC + " : " + maxCnt);
+		if(maxR==-1 || maxC==-1) {
+			return false;
+		}
 		killTree(maxR, maxC);
 		killCnt+=maxCnt;
+		return true;
 	}
 	
 	static int calc(int r, int c) {
