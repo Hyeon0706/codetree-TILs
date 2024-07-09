@@ -23,6 +23,7 @@ public class Main {
             if(set.size()==2){
                 ans++;
             }
+            set.clear();
         }
         System.out.println(ans);
     }
