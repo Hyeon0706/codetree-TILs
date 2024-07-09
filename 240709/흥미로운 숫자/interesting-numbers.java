@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
@@ -13,17 +14,27 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         x = Integer.parseInt(st.nextToken());
         y = Integer.parseInt(st.nextToken());
-        HashSet<Character> set;
+        HashMap<Character, Integer> map;
         for(int num=x; num<=y; num++){
-            set = new HashSet<>();
+            map = new HashMap<>();
             char[] number = String.valueOf(num).toCharArray();
             for(char c : number){
-                set.add(c);
+                if(map.containsKey(c)){
+                    map.put(c, map.get(c)+1);
+                }else{
+                    map.put(c, 1);
+                }
             }
-            if(set.size()==2){
-                ans++;
+            if(map.size()!=2){
+                continue;
             }
-            set.clear();
+            HashSet<Character> keySet = new HashSet<>(map.keySet());
+            for(char c : keySet){
+                if(map.get(c)==1){
+                    ans++;
+                    break;
+                }
+            }
         }
         System.out.println(ans);
     }
